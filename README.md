@@ -10,22 +10,16 @@ A Windows 95 themed 404 page.
 If you want to use w95 font, put font files at ./static/font/
 
 should be like this:
-
+```
 --------404.html
-
                |
-               
-               |_______static----font-----W95FA.otf
-               
-                                                 |
+               |_______static----font--=----W95FA.otf
+                                         |
+                                         |__w95fa.woff
+                                         |
+                                         |__w95fa.woff2
                                                  
-                                                 |__w95fa.woff
-                                                 
-                                                 |
-                                                 
-                                                 |__w95fa.woff2
-                                                 
-
+```
 ## Features
 ### Error Window
 - starts with **one** window on random screen position
