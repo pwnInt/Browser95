@@ -11,9 +11,9 @@ If you want to use w95 font, put font files at ./static/font/
 
 should be like this:
 ```
---------404.html
+________________404.html
                |
-               |_______static----font--=----W95FA.otf
+               |_______static____font_______W95FA.otf
                                          |
                                          |__w95fa.woff
                                          |
