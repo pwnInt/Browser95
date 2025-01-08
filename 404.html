@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://cdn.staticfile.org/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+		<title>404</title>
+		<style>
+			/* Link Colors */
+			a:link{
+			  color: black;
+			}
+			
+			a:visited{
+			  color:black;
+			}
+			
+			/* Text Marking */
+			*{
+			  padding:0px;
+			  margin:0px;
+			  -webkit-user-select: none; /* Safari */
+			  -ms-user-select: none; /* IE 10 and IE 11 */
+			  user-select: none; /* Standard syntax */
+			}
+			
+			/* Error Window */
+			.button:active{
+			  outline:none;
+			}
+			
+			.box{
+			  padding:0px;
+			  overflow: hidden;
+			  margin:0px;
+			  width:292px;
+			  height: 100px;
+			  position: absolute;
+			  background:#C0C0C0;
+			  border-width:1px;
+			  border-color:#FFFFFF #808080 #808080 #FFFFFF;
+			  border-style:solid;
+			}
+			
+			div.title{
+			  height:18px;
+			  width:100%;
+			  background:#000080;
+			  color:#FFF;
+			}
+			
+			img.title{
+			  float:left;
+			}
+			
+			p.title{
+			  margin:2px 0 0 1px;
+			  float:left;
+			  font-family: 'CustomFont';
+			  font-weight:bold;
+			  font-size:14px; /* 增大标题字体大小 */
+			}
+			
+			.title button{
+			  margin:2px 2px 2px 0;
+			  float:right;
+			  width:14px;
+			  height:13.5px;
+			  background:#C0C0C0;
+			  border-width:1px;
+			  border-color:#FFFFFF #808080 #808080 #FFFFFF;
+			  padding:0;
+			  font-size:12px; /* 增大按钮字体大小 */
+			  font-weight:bold;
+			  font-family: 'CustomFont';
+			  text-align:center;
+			  focus:none;
+			}
+			
+			div.body{
+			  padding:13px 12px 12px;
+			  height:100%;
+			  width:calc(100% - 26px);
+			  display:inline-block;
+			}
+			
+			div.body p{
+			  font-family: 'CustomFont';
+			  font-size:14px; /* 增大正文字体大小 */
+			}
+			
+			div.body button{
+			  font-family: 'CustomFont';
+			  font-size:14px; /* 增大按钮字体大小 */
+			  outline:1px solid #000000;
+			  background:#C0C0C0;
+			  border-width:1px;
+			  border-style:solid;
+			  border-color:#FFFFFF #808080 #808080 #FFFFFF;
+			  padding:4px 10px;
+			  margin:20px auto 3px;
+			  display:block;
+			  position:relative;
+			  bottom:0px;
+			}
+			
+			/* Task Bar */
+			#taskbar {
+				height: 26px;
+				background-color: rgb(192,192,192);
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				border-top: ridge 2px white;
+				z-index: 2147483647;
+			}
+
+			#start {
+				background-size: 17px 15px;
+				white-space: nowrap;
+				text-align: right;
+				font-weight: bolder;
+				font-size: 14px;
+				float: left;
+				height: 21px;
+				display: inline-block;
+				margin-left: 2px;
+				cursor: default;
+				user-select: none;
+				line-height: 18px; /* 向上移动3px */
+			}
+			.startRest {
+				top: 0px;
+				left: 0px;
+				border-top: ridge 2px white;
+				border-left: ridge 2px white;
+				border-bottom: ridge 2px black;
+				border-right: ridge 2px black;
+			}
+
+			.startRest:active {
+				border-top: inset 2px black;
+				border-left: inset 2px black;
+				border-bottom: inset 2px white;
+				border-right: inset 2px white;
+			}
+
+			#notifications {
+				margin-right: 2px;
+				border-top: inset 2px grey;
+				border-left: inset 2px grey;
+				border-bottom: inset 2px white;
+				border-right: inset 2px white;
+				padding-top: 17px;
+				display: inline-block;
+				float: right;
+				width: 58px;
+				height: 5px;
+			}
+
+			#clock {
+				display: inline-block;
+				float: right;
+				height: 1em;
+				text-align: center;
+				margin-top: -13px;
+				font-size: 13px;
+			}
+
+			.desktopIcon {
+				margin: 10px 20px;
+				display: block;
+				height: 68px;
+				width: 50px;
+				text-align: center;
+				vertical-align: bottom;
+				font-size: 10px;
+				color: white;
+			}
+
+			#mycomputer {
+				background-color: transparent;
+			}
+
+			.divider{
+				height:1px;
+				border-top: ridge 1px white;
+				border-bottom: ridge 1px grey;
+				margin: 2px ;
+			}
+			
+			/* Print Settings */
+			@media print {
+				@page {size: landscape}
+				html {
+					background-color: #008080 !important;
+					print-color-adjust: exact;
+					-webkit-print-color-adjust:exact;					
+				}
+			}
+
+			@font-face {
+				font-family: 'CustomFont';
+				src: url('/static/font/w95fa.woff2') format('woff2'),
+					 url('/static/font/w95fa.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			body, p, button {
+				font-family: 'CustomFont', Arial, sans-serif;
+				font-size: 16px; /* 增大字体大小 */
+			}
+		</style>
+	</head>
+	<body style="background:#008080; width: 100%; height: 100%; overflow: hidden;">
+  
+	  <div id="win">
+		<div id="desktop">
+			 <!-- Computer Icon -->
+			<div class="desktopIcon" id="mycomputer" onclick="openDialog()">
+				<img src="data:image/png;base64,AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAP8AAAAAgAAAgICAAAD/AADAwMAA//8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREAABIZmZmZmZmZmZmZmZmZEAASGZmZmZmZmZmZmZmZmREAEhmM2ZmZmZmZmZkZmZkREBIZlVmZmZmYAAAAAAGZERASGZmZmZmZmRERERERmREQEhmZmZmZmZmZmZmZmZkREBIiIiIiIiIiIiIiIiIhERABEREREREREREREREREZEQAAAAAAAAAAAAAAAAABEZEAABEREREREREREREREBEZAAASGZmZmZmZmZmZmZEBEQAAEhoiIiIiIiIiIiGREAAAABIYRERERERERERhkRAAAAASGAiIiIiIiIiIYZEQAAAAEhgIiIiAAAAAiGGREAAAABIYCIiIkiIiAIhhkRAAAAASGAiIABIiIgCIYZEQAAAAEhgIiSISIiIAiGGREAAAABIYCIkiBEREQIhhkRAAAAASGAiJIiIgCIiIYZEQAAAAEhgJyAAAAAiIiGGREAAAABIYCciIiIiIiIhhkRAAAAASGAiIiIiIiIiIYZEQAAAAEhgAAAAAAAAAAGGREAAAABIZEREREREREREhkRAAAAASGZmZmZmZmZmZmZEQAAAAASIiIiIiIiIiIiIREAAAAAARmZmZmZmZmZmZoRAAAAAAARmZmZmZmZmZmZoQAAAAAAAREREREREREREREAACAAAAPAAAABwAAAAMAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA4AAAAOAAAADgAAAB4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH8AAAB/gAAAf8AAAH/gAADw==" />
+				<br>
+				My Computer
+			</div>
+			 <!-- Recycle Bin Icon-->
+			<div class="desktopIcon" id="trash"  onclick="location.reload()">
+				<img src=" data:image/png;base64,AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAICAgADAwMAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiAAAAAAAAAAAAAAAAAAIjIiIAAAAAAAAAAAAAAAIjMyIiIgAAAAAAAAAAAAIjMzMiIiIAAAAAAAAAAAIjMzMzIiIiAAAAAAAAAAIjMjMzMyIiIgAAAAAAACIjMyEzMzMiIiIgAAAAAAAjMzIRERMzIiIiIAAAAAAAIzExERERMyIiIiAAAAAAACMSMxEzITMiIiIgAAAAAAIxEzMxMzEzIiIiIgAAAAACMRMzMzMxMyIiIiIAAAAAAjETEzMzMzMiIiIiAAAAAAIxERMzEREzIiIiIgAAAAAjMxETMzERMyIiIiIgAAAAIzEREzMRETMiIiIiIAAAACMzMzERETEzIiIiIiAAAAAjMzMzIRM0REQiIiIgAAACMzMzMzM0QiMzREIiIgAAAjMzMzM0QiMkQzM0RCIAAAIzMzM0QiIzJEREMzNEAAACMzM0QiRCMkREREMzRAAAIzM0QiREQjQkREREJCIAACM0QiQkRCNEIkREQiIAAAAkQiREJEI0RCMkRCIAAAAAJCIkRCQjREQkJEJCAAAAACRCIkQkJERCREIkQgAAAAACJEQiIkREQkREREIAAAAAAAIiREIiREIiREIgAAAAAAAAACIkRCJCACIgAAAAAAAAAAAAAiIAIgAAAAAAAAD//+P///+A///+AD//+AAf/+AAH/+AAB/+AAAf/AAAD/wAAA/8AAAP/AAAD/gAAAf4AAAH+AAAB/gAAAfwAAAD8AAAA/AAAAPwAAAD4AAAAeAAAAHgAAAB4AAAAcAAAAPAAAAPwAAAP8AAAD/AAAA/4AAAP/gAAH//ADH//+M//w==" />
+				<br>
+				Recycle Bin
+			</div>
+			<!-- Print Icon-->
+			<div class="desktopIcon" id="print" onclick="window.print()">
+				<img src="data:image/png;base64,AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAAAA/wCAgIAAAP8AAMDAwAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUzAAAAAAAAAAAAAAAAAAVVMzMAAAAAAAAAAAAAAAVVUwAzMwAAAAAAAAAAAAVVUzUzADMzAAAAAAAAAAVVUzU1MzMAMzMAAAAAAAVVUzVVNTMzMwAzMwAAAAA1UzVVVTUzMzMzADMzAAAAMzVVVVU1MzMzMzMAMwAAAzU1VVVVNTMzMzMzMwAAAANlNVVVVTYzMzMzMzMzAAADZTVVVVYzVTMzMzMzMzAAA2U1VVZlVTNVMzMzMzMwMANlNVZlVVVVM1UzMzMzMFMDZTZlVSJVM1UzVTMzMzBTM2YzVURVM1VVUDNVMzMwMAM2VTNVM1VVUAZQM1UzMAAAAzZVMzNVUAZmYFUzVTAAAAADNlUzMAZmEWUDVTMAAAAAAAM2VTNmEWZmAzMAAAAAAAAAAzZVNmZhFlAAAAAAAAAAAAADNjZhFmZlAAAAAAAAAAAAAAMzZmYRZlAAAAAAAAAAAAAAA2YRZmZlAAAAAAAAAAAAAAA2ZmYRZlAAAAAAAAAAAAAAA2YRZmZjMAAAAAAAAAAAAAA2ZmZjMAAAAAAAAAAAAAAAA2ZjMAAAAAAAAAAAAAAAAAAzMAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////////x////wH///wAf//wAB//wAAH/wAAAf4AAAB+AAAAPgAAADwAAAA8AAAAHAAAAAwAAAAEAAAAAAAAAAAAAAAMAAAAHwAAAB/AAAB/8AAB//wAB///AAP//8AB///wAP//+AA///wAP//+AP///wP///+P//////w==" />
+				<br>
+				Printers
+			</div>
+		</div>
+		<div id="taskbar">
+			<a href="https://bing.com">
+				<div id="start" class="startRest">
+					<img style="height:20px; width:20px;position: relative;top: 1px;" src="data:image/png;base64,AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAP8AAAAAAIAAAAD/AACAAAAAgIAAAP8AAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAgAAAhEAAABmgAAAAAIAIgIiAAIiIgCIiIAAAAACIAICIgACIiIAiIiAAAACACAAAAIAAiIiAIiIgAAAAgAAAAAAAAIiIgCIiIAAAgAAAAAAAAACIiIAiIiAAAIAAAAAAAAAABEiAIhmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAAEMwAAAFVwAAAABABEBEQABEREAHd3cAAAAARABAREAARERAB3d3AAAAQAQAAABAAEREQAd3dwAAAEAAAAAAAABEREAHd3cAAEAAAAAAAAAARERAB3d3AABAAAAAAAAAAAM0QAd1UAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////////////////////bn/5+yIf4fmiAAHt+gAB724AAbsiAAG5ogAB7foAAe9uAAG7IgABuaIAAe36AAHvbgABuyIAAbmiAAHt+gAB724AAbsiAAG5ogAB7foAAe//AAO//8APv////////////////////w==">
+					<b style="position: relative; top: -4px;">Start</b>
+				</div>
+			</a>
+			<div id="notifications">
+				<div id="clock"></div>
+			</div>
+		</div>
+		</div>
+	  
+	  <!-- Create error windows and handle their dragging-->
+	  <script>
+		var errNum = 404;
+		var posZ = 0;
+		
+		function spawnWindow() {
+			let posx = (Math.random() * ($(document).width() - 292)).toFixed();
+			let posy = (Math.random() * ($(document).height() - 125)).toFixed();
+			posZ += 1;
+			
+			// Spawn new window
+			$('body').append(`
+				<div class="box draggable" style="top: ${posy}px; left: ${posx}px; z-index: ${posZ}">
+						<div class="title" id="header">
+							  <img src=" data:image/png;base64,AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AACAAACAgIAAAP8AAMDAwAAA//8A////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAEREAAAAAAAAAAAAAEREAAREQAAAAAAAAAAAAAAEREBERAAAAAAAAAAAAAAAAEREREAAAAAAAAAAAAAAAAAEREQAAAAAAAAAAAAAAAAABEREAAAAAAAAAAAAAAAAAEREREAAAAAAAAHB3d3d3cREWERF3d3d3dwcwMzMzMxERMzEREzMzMzMDAAAAAAEREDcAEREAAAAAAAAAAAAAAAA3AAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzMzMzMzMzMzMzMzMzAAADdVVVVVVVVVVVVVVVUzAAA3V3d3d3d3d3d3d3dVMzAAN1MzMzMzMzMzMzMzVTMwADdXd3d3d3d3d3d3d1UzMAA3UzMzMzMzMzMzMzNVMzAAN1VVVVVVVVVVVVVVVTMwADdVVVVVVVVVVVVSIlUzMAA3VVVVVVVVVVVVVERVMzAAN3d3d3d3d3d3d3d3dzMwAANVVVVVVVVVVVVVVVVTMAAANVVVVVVVVVVVVVVVVTAAAAMzMzMzMzMzMzMzMzMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////h8P//8OH///hD///8B////g////wH/9AAAACQAAAAkAAAAL/hEP///x////8f//AAAAPgAAAB4AAAAOAAAABgAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAcAAAAHgAAAB8AAAA////////////////w==" width="18" height="18" class="title" />
+							  <p class="title">&nbsp;Error ${errNum}</p>
+							  <button onclick="spawnWindow()">X</button>
+							  <a href="https://bing.com">
+								<button>?</button>
+							  </a>
+						</div>
+						<div class="body">
+							  <img style="float: left;" src="data:image/png;base64,AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAD/AICAgAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREREREQiIiIiREREREREREREREIiIiIiIiIkREREREREREQiAAAAACIiIkREREREREQgABEREREAAiIiRERERERCARERERERERAiIiREREREABERERERERERACIiREREQBERERERERERERECIkRERAERERERERERERERECIkREQBERERERERERERERAiIkRAERERMRERERETERERAiJEAREREzMRERERMzERERAiRAERETMzMREREzMzEREQIiQBERETMzMRETMzMRERECIgERERETMzMRMzMxERERECIBERERETMzMzMzERERERAiARERERETMzMzMREREREQIgERERERETMzMxERERERECIBEREREREzMzMRERERERAiARERERETMzMzMREREREQIgERERERMzMzMzMRERERECQBEREREzMzETMzMRERERAkQBERETMzMRETMzMRERECJEARERMzMxERETMzMRERAkRAERERMzERERETMxEREQRERAERERMRERERETERERAkRERAERERERERERERERECREREQBERERERERERERERBEREREQBEREREREREREREEREREREQAEREREREREREARERERERERAEREREREREQRERERERERERAABEREREABEREREREREREREQAAAAARERERERET/+Af//8AA//+AAH/+AAAf/AAAD/gAAAfwAAAH4AAAA+AAAAHAAAABgAAAAYAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAGAAAABgAAAA4AAAAfAAAAH4AAAD+AAAB/wAAA/+AAAf/4AAf//AAP//+Af/w==">
+							  <p style="float: right;"><b>Browser 95</b>: Unable to locate your page.</p>
+							  <button style="top: 15px; width: 60px;" class="button" onclick="spawnWindow()">OK</button>
+						</div>
+				  </div>
+			`).find('div.draggable').draggable({scroll: false});
+			
+			// Bring focussed window to front
+			$(".draggable").on('mousedown', function(event) {
+				if ($(this).css("z-index") < posZ) {
+					posZ += 1;
+					$(this).css(`z-index`, posZ);
+				}
+			});
+			
+			errNum += 1;
+		}
+		</script>
+	  
+	  <!-- Open dummy dialog by clicking on desktop icon -->
+	  <script>
+		function openDialog() {
+		  let input = document.createElement('input');
+		  input.type = 'file';
+		  input.click();
+		}
+	  </script>
+	  
+	  <!-- Initialize time and first error window-->
+	  <script>
+			// Desktop environment
+			$(document).ready(function () {
+				startTime();
+				spawnWindow();
+			});
+
+
+			function startTime() {
+				var today = new Date();
+				var h = today.getHours();
+				var m = today.getMinutes();
+				var s = today.getSeconds();
+				// add a zero in front of numbers<10
+				m = checkTime(m);
+				s = checkTime(s);
+				var hd = h;
+				$('#clock').html("<b>" + (hd = 0 ? "12" : hd > 12 ? hd - 12 : hd) + ":" + m + " " + (h < 12 ? "AM" : "PM") + "</b>");
+				t = setTimeout(function () { startTime() }, 500);
+			}
+
+			function checkTime(i) {
+				if (i < 10) {
+					i = "0" + i;
+				}
+				return i;
+			}
+	  </script>
+  
+	</body>
+</html>
